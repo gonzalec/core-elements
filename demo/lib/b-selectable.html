@@ -9,7 +9,7 @@
                 LEFT: 37,
                 UP: 38,
                 RIGHT: 39,
-                DOWN: 40,
+                DOWN: 40
             };
 
             Bosonic.register({
@@ -74,17 +74,19 @@
                 },
 
                 keydownHandler: function(e) {
-                    e.preventDefault();
                     switch(e.keyCode) {
                         case KEY.ENTER: {
+                            e.preventDefault();
                             this.activate();
                             break;
                         }
                         case KEY.DOWN: {
+                            e.preventDefault();
                             this.selectNextItem();
                             break;
                         }
                         case KEY.UP: {
+                            e.preventDefault();
                             this.selectPreviousItem();
                             break;
                         }
@@ -94,8 +96,15 @@
                 },
 
                 activate: function() {
+                    var index;
+                    if(this === document.activeElement.parentNode) {
+                        index =  this.getItems().indexOf(document.activeElement);
+                        if(index !== this.selectedItemIndex) {
+                            this.select(index);
+                        }
+                    }
                     this.dispatchEvent(
-                        new CustomEvent('b-activate', { detail: { item: parseInt(this.getAttribute('selected')) } })
+                        new CustomEvent('b-activate', { detail: { item: parseInt(this.selectedItemIndex) } })
                     );
                 },
 

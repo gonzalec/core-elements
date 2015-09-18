@@ -149,7 +149,7 @@
             prototype.attributeChangedCallback = {
                 enumerable: true,
                 writable: true,
-                value: function(name, oldValue, newValue) {console.log('test', name);
+                value: function(name, oldValue, newValue) {
                     if (name.indexOf('data-') === 0) {
                         name = name.substr(5);
                     }

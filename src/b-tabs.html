@@ -42,18 +42,16 @@
                 },
 
                 selectedChanged: function (oldValue, newValue) {
-                    var oldTab = this.getTab(oldValue), 
+                    var oldTab = this.getTab(oldValue),
                         newTab = this.getTab(newValue);
-                    
+
                     if (oldTab !== null) {
                         oldTab.classList.remove('active');
-                        oldTab.tabIndex = -1;
                         oldTab.setAttribute('aria-selected', 'false');
                         this.toggleTabContent(oldTab);
                     }
                     if (newTab !== null) {
                         newTab.classList.add('active');
-                        newTab.tabIndex = 0;
                         newTab.setAttribute('aria-selected', 'true');
                         this.toggleTabContent(newTab);
                     }
@@ -117,7 +115,7 @@
         (function(){
             Bosonic.register({
                 createdCallback: function() {
-                    this.tabIndex = -1;
+                    this.tabIndex = 0;
                 }
             });
         })();
